@@ -30,11 +30,13 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.R)
     fun detectDevice(view: View) {
-        // What is the orientation?
+
         val displayMetrics = windowManager.currentWindowMetrics
         val size = displayMetrics.bounds
         binding.textView.text = size.bottom.toString()
         binding.textView2.text = size.right.toString()
+
+
 
     }
 
