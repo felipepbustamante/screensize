@@ -28,19 +28,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     fun detectDevice(view: View) {
         // What is the orientation?
-        val display = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-
-        } else {
-            Toast.makeText(this, "No es la version ${Build.VERSION_CODES.R}", Toast.LENGTH_SHORT).show()
-            null
-        }
-//        binding.textView.text = "${}"
-
-        // What is the resolution?
-
-//        binding.textView2.text = "${xy.x}x${xy.y}"
+        val displayMetrics = windowManager.currentWindowMetrics
+        val size = displayMetrics.bounds
+        binding.textView.text = size.bottom.toString()
+        binding.textView2.text = size.right.toString()
 
     }
 
