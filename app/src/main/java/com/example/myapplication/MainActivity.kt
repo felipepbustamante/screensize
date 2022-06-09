@@ -30,13 +30,17 @@ class MainActivity : AppCompatActivity() {
 
     fun detectDevice(view: View) {
         // What is the orientation?
-        val display = windowManager.defaultDisplay
-        binding.textView.text = "${display.rotation}"
+        val display = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+
+        } else {
+            Toast.makeText(this, "No es la version ${Build.VERSION_CODES.R}", Toast.LENGTH_SHORT).show()
+            null
+        }
+//        binding.textView.text = "${}"
 
         // What is the resolution?
-        var xy = Point()
-        display.getSize(xy)
-        binding.textView2.text = "${xy.x}x${xy.y}"
+
+//        binding.textView2.text = "${xy.x}x${xy.y}"
 
     }
 
