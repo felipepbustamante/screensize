@@ -28,15 +28,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.R)
+
     fun detectDevice(view: View) {
 
-        val displayMetrics = windowManager.currentWindowMetrics
-        val size = displayMetrics.bounds
-        binding.textView.text = size.bottom.toString()
-        binding.textView2.text = size.right.toString()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val displayMetrics = windowManager.currentWindowMetrics
+            val size = displayMetrics.bounds
+            binding.textView.text = size.bottom.toString()
+            binding.textView2.text = size.right.toString()
+        } else {
+            // What is the orientation?
+            val display = windowManager.defaultDisplay
+            binding.textView.text = "${display.rotation}"
 
-
+            // What is the resolution?
+            var xy = Point()
+            display.getSize(xy)
+            binding.textView2.text = "${xy.x}x${xy.y}"
+        }
 
     }
 
